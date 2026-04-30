@@ -1,0 +1,160 @@
+/* App.css */
+body {
+  background-color: #f8fafc;
+  margin: 0;
+}
+
+.container {
+  padding: 40px 20px;
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.title {
+  color: #2563eb;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.file-upload-area {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.card {
+  border: 1px solid #e2e8f0;
+  padding: 30px;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+/* ステータス表示 */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.miss-count-alert {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* 単語表示 */
+.word-display {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 40px 0;
+  text-align: center;
+  color: #1e293b;
+  word-break: break-word;
+}
+
+/* 入力欄 */
+.answer-input {
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  transition: border-color 0.2s;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+}
+
+.answer-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* フィードバック */
+.feedback-text {
+  min-height: 28px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.correct {
+  color: #10b981;
+}
+.wrong {
+  color: #ef4444;
+}
+
+/* ボタン共通 */
+.btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    opacity 0.2s,
+    transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+.btn-success {
+  background-color: #10b981;
+  color: white;
+}
+
+.btn-link {
+  margin-top: 20px;
+  background: none;
+  color: #6366f1;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+/* 終了画面 */
+.finish-screen {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.celebration-icon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+.score-display {
+  font-size: 1.2rem;
+  color: #475569;
+  margin: 15px 0;
+}
+.score-number {
+  font-size: 2rem;
+  color: #4f46e5;
+  font-weight: 800;
+}
