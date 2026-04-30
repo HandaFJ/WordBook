@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# 実用単語帳 (CSV-based Flashcard App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CSVファイルを読み込み、シンプルかつ効率的に学習を進めるための単語帳アプリケーションです。
+AIによるクイズモードの「手軽さ」ではなく、**「自分の学習データを自分で管理・分析する」**という実用性に特化して開発しました。
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 開発の背景とこだわり
+既存の学習アプリやAIツールは、データのポータビリティ（持ち運びやすさ）に欠けることが多く、学習履歴を自分の資産として残しにくいという課題がありました。本アプリは以下の「実用性」を追求しています。
 
-## React Compiler
+- **100% ローカル完結**: ユーザーの学習データは `localStorage` に保存され、外部サーバーに送信されません。
+- **データ主権の確保**: 使い慣れたCSV（Excel等）で単語帳を管理し、アプリをその「ビュワー兼トレーナー」として位置づけています。
+- **弱点集中分析**: 「一度も正解していない単語」を「ミスが多い順」にソートしてCSV出力する機能を搭載。効率的な復習をサポートします。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 主な機能
+- **CSVインポート**: A列に単語、B列に意味を記載したCSVを読み込み可能。
+- **ランダム出題**: シャッフルアルゴリズムによる偏りのない出題。
+- **入力バリデーション**: 空欄でのスキップを防止し、確実なアウトプットを促進。
+- **スマートエクスポート**: 
+    - 苦手単語のみを抽出。
+    - ミス回数が多い順に自動ソート。
+    - 日本語文字化け防止（BOM付きUTF-8）対応。
 
-## Expanding the ESLint configuration
+## 🛠 技術スタック
+- **Vite** (Build Tool)
+- **React** (UI Library)
+- **TypeScript** (Language)
+- **Deno** (Runtime)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 使い方
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. 準備
+以下のようなCSVファイルを用意します（UTF-8推奨）。
+```csv
+apple,りんご
+banana,バナナ
+cherry,さくらんぼ
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. セットアップ
+Denoがインストールされている環境で実行します。
+Bash
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 依存関係のインストール
+deno install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# 開発サーバーの起動
+deno task dev
+
+### 3. 学習の流れ
+1. `ファイルを選択` から作成したCSVを読み込みます。
+2. 表示される単語の答えを入力し、Enterまたは「判定」ボタンを押します。
+3. 全問終了後、「間違えた順にCSVで保存」をクリックして、自分だけの復習リストを作成します。
